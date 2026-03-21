@@ -1,7 +1,7 @@
 import { VideoLinksError } from './errors';
 import type { ObjectOrUnknown } from './types';
 
-export const KODIK_PLAYER_DOMAIN = 'kodik.info';
+export const KODIK_PLAYER_DOMAIN = 'kodikplayer.com';
 export const KODIK_VIDEO_INFO_ENDPOINT = '/ftor';
 
 export interface KodikParsedLinkExUrlParams {
