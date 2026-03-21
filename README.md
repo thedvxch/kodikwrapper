@@ -9,7 +9,7 @@
 > [!NOTE]
 > Начиная с v3.0.0 поддерживается только Node.js 18.0.0+
 
-| 📖 [TSDocs](https://tsdocs.dev/search/docs/kodikwrapper) | 📖 [Kodik API документация (требуется авторизация)](https://bd.kodik.biz/api/info) |
+| 📖 [Refs](https://thedvxchsquad.github.io/kodikwrapper) | 📖 [Kodik API документация (требуется авторизация)](https://bd.kodik.biz/api/info) |
 |-------------------------------------------------------------------------|-----------------------------------------------------------------------------------:|
 
 ## Установка
