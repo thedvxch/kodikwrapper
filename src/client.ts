@@ -5,7 +5,7 @@ export interface ClientOptions {
   kodikApiUrl?: string;
 }
 
-export const KODIK_API_URL = 'https://kodikapi.com';
+export const KODIK_API_URL = 'https://kodik-api.com';
 
 const endpointsArr: (keyof APIMethods)[] =
   ['countries', 'genres', 'list', 'qualities', 'search', 'translations', 'years', 'qualitiesV2', 'translationsV2'];
