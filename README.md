@@ -24,7 +24,7 @@ pnpm add kodikwrapper
 ### Класс Client
 Класс `Client` реализует только публичное API из [документации Kodik API](https://bd.kodik.biz/api/info). Это означает, что методы будут называться одинаково.
 
-Смотрите все доступные методы в [📖 TSDocs](https://tsdocs.dev/search/docs/kodikwrapper), [документации Kodik API](https://bd.kodik.biz/api/info) или с помощью подсказок в IDE.
+Смотрите все доступные методы в [📖 Refs](https://gh.dvxch.link/kodikwrapper), [документации Kodik API](https://bd.kodikres.com/api/info) или с помощью подсказок в IDE.
 
 ```javascript
 import { Client } from 'kodikwrapper'; // ESM / TypeScript
