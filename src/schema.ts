@@ -16,7 +16,7 @@ import type {
   TranslationsV2Params,
   TranslationsV2Response,
   YearsParams,
-  YearsResponse
+  YearsResponse,
 } from './resources';
 
 export interface APIMethods {

@@ -1,14 +1,15 @@
 import type { APIMethods } from './schema';
+import type { Fetcher } from './utils';
 
 export interface ClientOptions {
   token: string;
   kodikApiUrl?: string;
+  fetcher?: Fetcher;
 }
 
 export const KODIK_API_URL = 'https://kodik-api.com';
 
-const endpointsArr: (keyof APIMethods)[] =
-  ['countries', 'genres', 'list', 'qualities', 'search', 'translations', 'years', 'qualitiesV2', 'translationsV2'];
+const endpointsArr: (keyof APIMethods)[] = ['countries', 'genres', 'list', 'qualities', 'search', 'translations', 'years', 'qualitiesV2', 'translationsV2'];
 
 const remapEndpoints: Record<string, string> = {
   qualitiesV2: 'qualities/v2',
@@ -19,19 +20,18 @@ export class ClientError extends Error {
   name: string = 'ClientError';
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
+// biome-ignore lint/suspicious/noUnsafeDeclarationMerging: class merged with APIMethods interface to type dynamic endpoints
 export class Client {
   public KODIK_API_URL: string;
 
-  constructor({ token, kodikApiUrl }: ClientOptions) {
+  constructor({ token, kodikApiUrl, fetcher = fetch }: ClientOptions) {
     this.KODIK_API_URL = kodikApiUrl ?? KODIK_API_URL;
 
     for (const endpointKey of endpointsArr) {
       const endpoint = remapEndpoints[endpointKey] ?? endpointKey;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-expect-error dynamic endpoint method assignment
       this[endpointKey] = (params: Record<string, string>) =>
-        fetch(new URL(`${endpoint}?${new URLSearchParams({ token, ...params }).toString()}`,this.KODIK_API_URL), {
+        fetcher(new URL(`${endpoint}?${new URLSearchParams({ token, ...params }).toString()}`, this.KODIK_API_URL), {
           method: 'POST',
         })
           .then(async (res) => {
@@ -40,12 +40,10 @@ export class Client {
             if (typeof json !== 'object') throw new ClientError(`expected json as an object, but got a ${typeof json}`);
             return json as object;
           })
-          .then(
-            (json) => {
-              if ('error' in json) throw new ClientError(json.error as string);
-              return json;
-            }
-          );
+          .then((json) => {
+            if ('error' in json) throw new ClientError(json.error as string);
+            return json;
+          });
     }
   }
 
@@ -54,5 +52,4 @@ export class Client {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface Client extends APIMethods {}

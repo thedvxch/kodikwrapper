@@ -1,63 +1,22 @@
 import type { AllowArray, Nullable } from '../types';
 
-export type MaterialMovieType =
-  | 'foreign-movie'
-  | 'soviet-cartoon'
-  | 'foreign-cartoon'
-  | 'russian-cartoon'
-  | 'anime'
-  | 'russian-movie';
+export type MaterialMovieType = 'foreign-movie' | 'soviet-cartoon' | 'foreign-cartoon' | 'russian-cartoon' | 'anime' | 'russian-movie';
 
-export type MaterialSerialType =
-  | 'cartoon-serial'
-  | 'documentary-serial'
-  | 'russian-serial'
-  | 'foreign-serial'
-  | 'anime-serial'
-  | 'multi-part-film';
+export type MaterialSerialType = 'cartoon-serial' | 'documentary-serial' | 'russian-serial' | 'foreign-serial' | 'anime-serial' | 'multi-part-film';
 
 export type MaterialType = MaterialMovieType | MaterialSerialType;
 
-export type ExternalDatabase =
-  | 'kinopoisk_id'
-  | 'imdb_id'
-  | 'mdl_id'
-  | 'worldart_link'
-  | 'shikimori_id';
+export type ExternalDatabase = 'kinopoisk_id' | 'imdb_id' | 'mdl_id' | 'worldart_link' | 'shikimori_id';
 
-export type ExternalDatabaseGenresType =
-  | 'kinopoisk'
-  | 'shikimori'
-  | 'mydramalist'
-  | 'all';
+export type ExternalDatabaseGenresType = 'kinopoisk' | 'shikimori' | 'mydramalist' | 'all';
 
-export type RatingMPAA =
-  | 'G'
-  | 'PG'
-  | 'PG-13'
-  | 'R'
-  | 'R+'
-  | 'Rx';
+export type RatingMPAA = 'G' | 'PG' | 'PG-13' | 'R' | 'R+' | 'Rx';
 
-export type AnimeKind =
-  | 'tv'
-  | 'movie'
-  | 'ova'
-  | 'ona'
-  | 'special'
-  | 'music'
-  | 'tv_13'
-  | 'tv_24'
-  | 'tv_48';
+export type AnimeKind = 'tv' | 'movie' | 'ova' | 'ona' | 'special' | 'music' | 'tv_13' | 'tv_24' | 'tv_48';
 
-export type AnimeStatus =
-  | 'anons'
-  | 'ongoing'
-  | 'released';
+export type AnimeStatus = 'anons' | 'ongoing' | 'released';
 
-export type TranslationType =
-  | 'voice'
-  | 'subtitles';
+export type TranslationType = 'voice' | 'subtitles';
 
 export interface Translation {
   id: number;

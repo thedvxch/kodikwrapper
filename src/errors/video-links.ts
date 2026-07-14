@@ -15,7 +15,7 @@ export class VideoLinksError extends Error {
   /** Error cause */
   cause?: unknown;
 
-  constructor ({ code, description, data, cause }: VideoLinksErrorOptions) {
+  constructor({ code, description, data, cause }: VideoLinksErrorOptions) {
     super(description);
 
     this.code = code;
@@ -26,11 +26,11 @@ export class VideoLinksError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 
-  get [Symbol.toStringTag] () {
+  get [Symbol.toStringTag]() {
     return this.constructor.name;
   }
 
-  toJSON (): Pick<this, keyof this> {
+  toJSON(): Pick<this, keyof this> {
     const json = {} as Pick<this, keyof this>;
 
     for (const key of Object.getOwnPropertyNames(this)) {

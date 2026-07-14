@@ -1,9 +1,6 @@
-import type {
-  FilterByExternalDatabase, KodikResponse, SharedFields,
-} from './shared-types';
+import type { FilterByExternalDatabase, KodikResponse, SharedFields } from './shared-types';
 
-export interface CountriesParams extends FilterByExternalDatabase, SharedFields {
-}
+export interface CountriesParams extends FilterByExternalDatabase, SharedFields {}
 
 export interface CountriesResponseObject {
   title: string;

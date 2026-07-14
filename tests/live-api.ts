@@ -10,10 +10,12 @@ describeWithToken('Kodik API live', () => {
   it('loads countries', async () => {
     const response = await client.countries();
 
-    expect(response).toEqual(expect.objectContaining({
-      total: expect.any(Number),
-      results: expect.any(Array),
-    }));
+    expect(response).toEqual(
+      expect.objectContaining({
+        total: expect.any(Number),
+        results: expect.any(Array),
+      }),
+    );
   });
 
   it('loads qualities', async () => {
@@ -25,10 +27,12 @@ describeWithToken('Kodik API live', () => {
   it('searches with a small limit', async () => {
     const response = await client.search({ title: 'Naruto', limit: 1 });
 
-    expect(response).toEqual(expect.objectContaining({
-      total: expect.any(Number),
-      results: expect.any(Array),
-    }));
+    expect(response).toEqual(
+      expect.objectContaining({
+        total: expect.any(Number),
+        results: expect.any(Array),
+      }),
+    );
     expect(response.results.length).toBeLessThanOrEqual(1);
   });
 });

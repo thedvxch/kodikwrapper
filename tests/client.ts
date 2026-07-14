@@ -19,8 +19,7 @@ describe('Client', () => {
   });
 
   it('sends POST requests with token and params', async () => {
-    const fetchMock = vi.spyOn(globalThis, 'fetch')
-      .mockResolvedValue(jsonResponse({ total: 1, results: [] }));
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue(jsonResponse({ total: 1, results: [] }));
     const client = new Client({ token: 'public-token', kodikApiUrl: 'https://kodik.test' });
 
     await expect(client.search({ title: 'Naruto', limit: 1 })).resolves.toEqual({
@@ -34,8 +33,7 @@ describe('Client', () => {
   });
 
   it('supports methods without params', async () => {
-    const fetchMock = vi.spyOn(globalThis, 'fetch')
-      .mockResolvedValue(jsonResponse([]));
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue(jsonResponse([]));
     const client = new Client({ token: 'public-token', kodikApiUrl: 'https://kodik.test' });
 
     await expect(client.qualities()).resolves.toEqual([]);
@@ -45,7 +43,8 @@ describe('Client', () => {
   });
 
   it('maps v2 method names to v2 endpoint paths', async () => {
-    const fetchMock = vi.spyOn(globalThis, 'fetch')
+    const fetchMock = vi
+      .spyOn(globalThis, 'fetch')
       .mockResolvedValueOnce(jsonResponse({ total: 0, results: [] }))
       .mockResolvedValueOnce(jsonResponse({ total: 0, results: [] }));
     const client = new Client({ token: 'public-token', kodikApiUrl: 'https://kodik.test' });
@@ -60,8 +59,7 @@ describe('Client', () => {
   });
 
   it('throws ClientError when content type is not json', async () => {
-    vi.spyOn(globalThis, 'fetch')
-      .mockResolvedValue(new Response('ok', { headers: { 'content-type': 'text/plain' } }));
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response('ok', { headers: { 'content-type': 'text/plain' } }));
     const client = new Client({ token: 'public-token', kodikApiUrl: 'https://kodik.test' });
 
     await expect(client.countries()).rejects.toBeInstanceOf(ClientError);

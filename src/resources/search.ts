@@ -1,9 +1,5 @@
 import type { AllowArray } from '../types';
-import type {
-  KodikResponse, MaterialObject,
-  FilterByExternalDatabase, SharedFields, TranslationType,
-  SharedSearchListFields
-} from './shared-types';
+import type { FilterByExternalDatabase, KodikResponse, MaterialObject, SharedFields, SharedSearchListFields, TranslationType } from './shared-types';
 
 export interface SearchParams extends FilterByExternalDatabase, Omit<SharedFields, 'sort'>, SharedSearchListFields {
   title?: string;

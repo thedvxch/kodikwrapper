@@ -6,7 +6,7 @@
 /src
 /development
 .gitignore
-.eslintrc.json
+biome.json
 tsup.config.ts
 vitest.config.mts
 tsconfig.json

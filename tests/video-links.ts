@@ -22,13 +22,11 @@ describe('VideoLinks', () => {
 
   describe('normalizeKodikLink', () => {
     it('normalizes protocol-relative links', () => {
-      expect(VideoLinks.normalizeKodikLink('//kodik.cc/video/1/hash/720p'))
-        .toBe('https://kodik.cc/video/1/hash/720p');
+      expect(VideoLinks.normalizeKodikLink('//kodik.cc/video/1/hash/720p')).toBe('https://kodik.cc/video/1/hash/720p');
     });
 
     it('normalizes relative links against kodikplayer.com', () => {
-      expect(VideoLinks.normalizeKodikLink('/video/1/hash/720p'))
-        .toBe('https://kodikplayer.com/video/1/hash/720p');
+      expect(VideoLinks.normalizeKodikLink('/video/1/hash/720p')).toBe('https://kodikplayer.com/video/1/hash/720p');
     });
 
     it('keeps absolute links unchanged', () => {
@@ -65,12 +63,11 @@ describe('VideoLinks', () => {
     });
 
     it('throws a typed error when link has invalid format', async () => {
-      await expect(VideoLinks.parseLink({ link: 'https://kodik.cc/video/not-a-number/hash/720p' }))
-        .rejects.toMatchObject({
-          name: 'VideoLinksError',
-          code: 'parse-link-invalid',
-          message: 'link is not valid',
-        });
+      await expect(VideoLinks.parseLink({ link: 'https://kodik.cc/video/not-a-number/hash/720p' })).rejects.toMatchObject({
+        name: 'VideoLinksError',
+        code: 'parse-link-invalid',
+        message: 'link is not valid',
+      });
     });
 
     it('parses extended data from the player page', async () => {
@@ -120,10 +117,12 @@ describe('VideoLinks', () => {
     it('throws a typed error when extended page does not contain url params', async () => {
       vi.spyOn(globalThis, 'fetch').mockResolvedValue(createResponse('<html></html>'));
 
-      await expect(VideoLinks.parseLink({
-        link: '//kodik.cc/video/87051/57c572172a2ccfb23234cdaf7174b20d/720p',
-        extended: true,
-      })).rejects.toMatchObject({
+      await expect(
+        VideoLinks.parseLink({
+          link: '//kodik.cc/video/87051/57c572172a2ccfb23234cdaf7174b20d/720p',
+          extended: true,
+        }),
+      ).rejects.toMatchObject({
         name: 'VideoLinksError',
         code: 'parse-link-ex-invalid',
         message: 'cannot get url params',
@@ -133,18 +132,15 @@ describe('VideoLinks', () => {
 
   describe('getActualVideoInfoEndpoint', () => {
     it('extracts base64 encoded endpoint from player script', async () => {
-      vi.spyOn(globalThis, 'fetch')
-        .mockResolvedValue(createResponse(`$.ajax({type:"POST",url:atob("${btoa('/custom-ftor')}")})`));
+      vi.spyOn(globalThis, 'fetch').mockResolvedValue(createResponse(`$.ajax({type:"POST",url:atob("${btoa('/custom-ftor')}")})`));
 
-      await expect(VideoLinks.getActualVideoInfoEndpoint('/assets/js/app.player_single.abc123.js'))
-        .resolves.toBe('/custom-ftor');
+      await expect(VideoLinks.getActualVideoInfoEndpoint('/assets/js/app.player_single.abc123.js')).resolves.toBe('/custom-ftor');
     });
 
     it('falls back to /kor when endpoint is missing', async () => {
       vi.spyOn(globalThis, 'fetch').mockResolvedValue(createResponse('no endpoint here'));
 
-      await expect(VideoLinks.getActualVideoInfoEndpoint('/assets/js/app.player_single.abc123.js'))
-        .resolves.toBe('/kor');
+      await expect(VideoLinks.getActualVideoInfoEndpoint('/assets/js/app.player_single.abc123.js')).resolves.toBe('/kor');
     });
   });
 
@@ -161,8 +157,7 @@ describe('VideoLinks', () => {
           ],
         },
       };
-      const fetchMock = vi.spyOn(globalThis, 'fetch')
-        .mockResolvedValue(createResponse(JSON.stringify(videoInfo), 'application/json'));
+      const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue(createResponse(JSON.stringify(videoInfo), 'application/json'));
 
       const links = await VideoLinks.getLinks({
         link: '//kodik.cc/video/87051/57c572172a2ccfb23234cdaf7174b20d/720p',
@@ -187,18 +182,21 @@ describe('VideoLinks', () => {
     it('throws when video info response is not json', async () => {
       vi.spyOn(globalThis, 'fetch').mockResolvedValue(createResponse('not json'));
 
-      await expect(VideoLinks.getLinks({
-        link: '//kodik.cc/video/87051/57c572172a2ccfb23234cdaf7174b20d/720p',
-      })).rejects.toBeInstanceOf(VideoLinksError);
+      await expect(
+        VideoLinks.getLinks({
+          link: '//kodik.cc/video/87051/57c572172a2ccfb23234cdaf7174b20d/720p',
+        }),
+      ).rejects.toBeInstanceOf(VideoLinksError);
     });
 
     it('throws when video info response has no links object', async () => {
-      vi.spyOn(globalThis, 'fetch')
-        .mockResolvedValue(createResponse(JSON.stringify({ links: null }), 'application/json'));
+      vi.spyOn(globalThis, 'fetch').mockResolvedValue(createResponse(JSON.stringify({ links: null }), 'application/json'));
 
-      await expect(VideoLinks.getLinks({
-        link: '//kodik.cc/video/87051/57c572172a2ccfb23234cdaf7174b20d/720p',
-      })).rejects.toMatchObject({
+      await expect(
+        VideoLinks.getLinks({
+          link: '//kodik.cc/video/87051/57c572172a2ccfb23234cdaf7174b20d/720p',
+        }),
+      ).rejects.toMatchObject({
         code: 'get-links-invalid-response',
         message: 'videoInfoJson.links is not object',
       });
@@ -207,11 +205,10 @@ describe('VideoLinks', () => {
 
   describe('parseSkipButtons', () => {
     it('parses skip button timelines', () => {
-      expect(VideoLinks.parseSkipButtons({ data: '10-20,30-40', type: 'intro' }))
-        .toEqual([
-          { from: '10', to: '20' },
-          { from: '30', to: '40' },
-        ]);
+      expect(VideoLinks.parseSkipButtons({ data: '10-20,30-40', type: 'intro' })).toEqual([
+        { from: '10', to: '20' },
+        { from: '30', to: '40' },
+      ]);
     });
   });
 });

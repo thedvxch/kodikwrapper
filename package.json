@@ -20,27 +20,30 @@
   "scripts": {
     "build": "rm -rf ./dist && tsup",
     "test": "vitest",
+    "lint": "biome check",
+    "format": "biome format --write",
     "docs": "typedoc --out docs src/index.ts --gitRevision master --skipErrorChecking"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^5.10.0",
-    "@types/node": "^18.19.130",
-    "@typescript-eslint/eslint-plugin": "^8.57.1",
-    "@typescript-eslint/parser": "^8.57.1",
-    "eslint": "^10.1.0",
-    "tsup": "^7.2.0",
-    "typedoc": "^0.28.17",
+    "@biomejs/biome": "^2.5.3",
+    "@types/node": "^20.19.43",
+    "tsup": "^8.5.1",
+    "typedoc": "^0.28.20",
     "typescript": "^5.9.3",
-    "vitest": "^0.34.6"
+    "vite": "^8.1.4",
+    "vitest": "^4.1.10"
   },
   "keywords": [
     "kodik"
   ],
-  "homepage": "https://github.com/thedvxchsquad/kodikwrapper",
+  "engines": {
+    "node": ">=20"
+  },
+  "homepage": "https://github.com/thedvxch/kodikwrapper",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thedvxchsquad/kodikwrapper.git"
+    "url": "https://github.com/thedvxch/kodikwrapper.git"
   },
-  "author": "thedvxchsquad",
+  "author": "thedvxch",
   "license": "WTFPL"
 }
