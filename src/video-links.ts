@@ -158,7 +158,7 @@ export class VideoLinks {
         description: 'videoInfoJson is not object',
         data: { videoInfoResponse, videoInfoJson }
       });
-    if (typeof videoInfoJson.links !== 'object')
+    if (typeof videoInfoJson.links !== 'object' || videoInfoJson.links === null)
       throw new VideoLinksError({
         code: 'get-links-invalid-response',
         description: 'videoInfoJson.links is not object',
