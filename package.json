@@ -1,6 +1,6 @@
 {
   "name": "kodikwrapper",
-  "version": "3.0.6",
+  "version": "3.1.0",
   "description": "A kodikapi.com wrapper for Node.JS",
   "type": "commonjs",
   "main": "dist/index.js",
@@ -22,6 +22,7 @@
     "test": "vitest",
     "lint": "biome check",
     "format": "biome format --write",
+    "changelog": "node scripts/changelog.mjs",
     "docs": "typedoc --out docs src/index.ts --gitRevision master --skipErrorChecking"
   },
   "devDependencies": {
