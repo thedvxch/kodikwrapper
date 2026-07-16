@@ -1,7 +1,7 @@
 <p align="center"><img src="https://raw.githubusercontent.com/thedvxch/kodikwrapper/master/.github/logo.svg"></p>
 <p align="center">
-    <a href="https://www.npmjs.com/package/kodikwrapper"><img src="https://img.shields.io/npm/v/kodikwrapper.svg?style=flat-square" alt="npm version"></a>
-    <a href="https://www.npmjs.com/package/kodikwrapper"><img src="https://img.shields.io/npm/dt/kodikwrapper.svg?style=flat-square" alt="npm downloads"></a>
+    <a href="https://npmx.dev/package/kodikwrapper"><img src="https://img.shields.io/npm/v/kodikwrapper.svg?style=flat-square" alt="npm version"></a>
+    <a href="https://npmx.dev/package/kodikwrapper"><img src="https://img.shields.io/npm/dt/kodikwrapper.svg?style=flat-square" alt="npm downloads"></a>
 </p>
 
 > kodikwrapper — это реализация api kodikapi.com для node.js
